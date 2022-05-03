@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  creationTimestamp: "2022-05-02T08:28:11Z"
+  generation: 1
+  name: blazor-ingress
+  namespace: devdays
+  resourceVersion: "173297"
+  uid: ffd10d23-246a-4c15-862b-6e7e2e9e32b6
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: devdayseurope-blazor.westeurope.cloudapp.azure.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: blazor
+            port:
+              number: 80
+        path: /(.*)
+        pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+    - ip: 20.23.201.107

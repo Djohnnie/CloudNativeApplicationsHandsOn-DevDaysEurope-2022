@@ -1,0 +1,53 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"creationTimestamp":"2022-05-02T08:10:57Z","finalizers":["service.kubernetes.io/load-balancer-cleanup"],"labels":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx","app.kubernetes.io/part-of":"ingress-nginx","app.kubernetes.io/version":"1.2.0"},"name":"ingress-nginx-controller","namespace":"ingress-nginx","resourceVersion":"168994","uid":"5f383635-b978-46a1-a3eb-3df986bad630"},"spec":{"allocateLoadBalancerNodePorts":true,"clusterIP":"10.0.61.220","clusterIPs":["10.0.61.220"],"externalTrafficPolicy":"Local","healthCheckNodePort":32427,"internalTrafficPolicy":"Cluster","ipFamilies":["IPv4"],"ipFamilyPolicy":"SingleStack","ports":[{"appProtocol":"http","name":"http","nodePort":31030,"port":80,"protocol":"TCP","targetPort":"http"},{"appProtocol":"https","name":"https","nodePort":30607,"port":443,"protocol":"TCP","targetPort":"https"}],"selector":{"app.kubernetes.io/component":"controller","app.kubernetes.io/instance":"ingress-nginx","app.kubernetes.io/name":"ingress-nginx"},"sessionAffinity":"None","type":"LoadBalancer"},"status":{"loadBalancer":{"ingress":[{"ip":"52.137.0.221"}]}}}
+  creationTimestamp: "2022-05-02T08:10:57Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/version: 1.2.0
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+  resourceVersion: "169997"
+  uid: 5f383635-b978-46a1-a3eb-3df986bad630
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.0.61.220
+  clusterIPs:
+  - 10.0.61.220
+  externalTrafficPolicy: Local
+  healthCheckNodePort: 32427
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - appProtocol: http
+    name: http
+    nodePort: 31030
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - appProtocol: https
+    name: https
+    nodePort: 30607
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 52.137.0.221

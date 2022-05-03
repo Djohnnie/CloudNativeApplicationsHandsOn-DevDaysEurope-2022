@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workerservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workerservice
+  template:
+    metadata:
+      labels:
+        app: workerservice
+    spec:
+      containers:
+      - name: workerservice
+        image: devdayseurope.azurecr.io/workerservice:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

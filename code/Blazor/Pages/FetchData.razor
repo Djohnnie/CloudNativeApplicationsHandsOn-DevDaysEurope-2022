@@ -1,0 +1,61 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Weather forecast</PageTitle>
+
+@using Blazor.Data
+@inject RequestService RequestService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (requestData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Machine name</th>
+            <th scope="col">Number of responses</th>
+            <th scope="col">Hit percentage</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var requestEntry in requestData.Entries)
+            {
+                <tr>
+                    <td>@requestEntry.MachineName</td>
+                    <td>@requestEntry.Occurences</td>
+                    <td>@String.Format("{0:N2}", requestEntry.Percentage) %</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code
+{
+    private RequestData requestData = null;
+
+    private PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+
+    private void RefreshData()
+    {
+        requestData = RequestService.GetData();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        while (await timer.WaitForNextTickAsync())
+        {
+            await InvokeAsync( () =>
+            {
+               RefreshData();
+               StateHasChanged();
+            });
+        }
+    }
+}

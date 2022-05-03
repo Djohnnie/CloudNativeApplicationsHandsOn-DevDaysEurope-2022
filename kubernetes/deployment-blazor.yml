@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blazor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blazor
+  template:
+    metadata:
+      labels:
+        app: blazor
+    spec:
+      containers:
+      - name: blazor
+        image: devdayseurope.azurecr.io/blazor:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
